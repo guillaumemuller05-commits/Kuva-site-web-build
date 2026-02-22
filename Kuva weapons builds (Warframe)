@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kuva BigBoss Ultimate</title>
+<style>
+body {margin:0; font-family:'Arial',sans-serif; background:#0F0F0F; color:#E6E6E6;}
+h1,h2 {text-align:center; margin:10px;}
+h1 {color:#DC0000; font-size:3em;}
+h2 {color:#FFD700; font-size:2em;}
+
+/* Onglets */
+.tab {overflow:hidden; background:#111;}
+.tab button {background:#111; float:left; border:none; outline:none; cursor:pointer; padding:14px 16px; transition:0.3s; color:#E6E6E6; font-weight:bold;}
+.tab button:hover {background:#222; color:#FFD700;}
+.tab button.active {background:#222; color:#DC0000;}
+
+/* Contenu onglets */
+.tabcontent {display:none; padding:20px;}
+.dashboard {display:flex; flex-wrap:wrap; justify-content:center; padding:10px;}
+.card {background:#1A1A1A; border-left:8px solid #DC0000; border-radius:10px; width:280px; margin:10px; padding:15px; box-shadow:0 0 20px rgba(220,0,0,0.5); cursor:pointer; transition:0.2s;}
+.card:hover {transform:scale(1.05); box-shadow:0 0 30px rgba(255,215,0,0.8);}
+.warframe {color:#FFD700; font-weight:bold; margin-bottom:8px;}
+.mods {color:#E6E6E6; font-size:0.9em; margin-bottom:8px;}
+
+/* Popups */
+.popup {display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#111; padding:25px; border:3px solid #DC0000; border-radius:12px; width:400px; z-index:100; box-shadow:0 0 50px rgba(220,0,0,0.7);}
+.popup h3 {color:#FFD700; margin-top:0;}
+.close-btn {background:#DC0000; color:#fff; border:none; padding:5px 10px; border-radius:5px; float:right; cursor:pointer;}
+.overlay {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:50;}
+</style>
+</head>
+<body>
+
+<h1>PROTOCOLE KUVA ANNIHILATION</h1>
+<h2>BigBoss Prime – Steel Path 9999</h2>
+
+<div class="tab">
+  <button class="tablinks active" onclick="openTab(event,'Dashboard')">Dashboard</button>
+  <button class="tablinks" onclick="openTab(event,'Builds')">Builds</button>
+  <button class="tablinks" onclick="openTab(event,'Flow')">Flow Combat</button>
+  <button class="tablinks" onclick="openTab(event,'Stats')">Stats</button>
+  <button class="tablinks" onclick="openTab(event,'Doctrine')">Doctrine BigBoss</button>
+</div>
+
+<!-- Onglet Dashboard -->
+<div id="Dashboard" class="tabcontent" style="display:block;">
+  <div class="dashboard">
+    <div class="card" onclick="openPopup('nukor')"><div class="warframe">Kuva Nukor</div><div class="mods">Clique pour voir Build complet</div></div>
+    <div class="card" onclick="openPopup('zarr')"><div class="warframe">Kuva Zarr</div><div class="mods">Clique pour voir Build complet</div></div>
+    <div class="card" onclick="openPopup('brakk')"><div class="warframe">Kuva Brakk</div><div class="mods">Clique pour voir Build complet</div></div>
+    <div class="card" onclick="openPopup('drakgoon')"><div class="warframe">Kuva Drakgoon</div><div class="mods">Clique pour voir Build complet</div></div>
+    <div class="card" onclick="openPopup('seer')"><div class="warframe">Kuva Seer</div><div class="mods">Clique pour voir Build complet</div></div>
+    <div class="card" onclick="openPopup('kraken')"><div class="warframe">Kuva Kraken</div><div class="mods">Clique pour voir Build complet</div></div>
+  </div>
+</div>
+
+<!-- Onglet Builds -->
+<div id="Builds" class="tabcontent">
+  <h3>Builds Optimisés</h3>
+  <p>Nukor : Saryn Prime / Helminth Pillage, Arcanes Grâce / Énergie, Mods: Diffusion galvanisée, Tir galvanisé, Torrent létal, Charge thermique primée...</p>
+  <p>Zarr : Revenant Prime / Helminth Terreur, Arcanes Gardien / Accélération, Mods: Chambre galvanisée, Aptitude galvanisée...</p>
+  <p>Brakk : Hildryn Prime / Rugissement, Arcanes Égide / Grâce, Mods: Diffusion galvanisée, Tir galvanisé...</p>
+  <p>Drakgoon : Nekros / Lourdeur, Arcanes Grâce / Égide, Mods: Enfer galvanisé, Savoir galvanisé...</p>
+  <p>Seer : Xaku / Pillage, Arcanes Grâce / Énergie, Mods: Diffusion galvanisée, Tir galvanisé...</p>
+  <p>Kraken : Wisp Prime / Rugissement, Arcanes Grâce / Égide, Mods: Diffusion galvanisée, Tir galvanisé...</p>
+</div>
+
+<!-- Onglet Flow -->
+<div id="Flow" class="tabcontent">
+  <h3>Flow Combat</h3>
+  <p>Armor Strip → Primer → Scaling → Merciless → Eximus Delete</p>
+  <p>(Animation et icônes à venir)</p>
+</div>
+
+<!-- Onglet Stats -->
+<div id="Stats" class="tabcontent">
+  <h3>Stats</h3>
+  <p>DPS, Crit, Status proc, Scaling Slash/Viral par arme (détails à compléter)</p>
+</div>
+
+<!-- Onglet Doctrine -->
+<div id="Doctrine" class="tabcontent">
+  <h3>Doctrine BigBoss</h3>
+  <p>Ordre d'activation optimal, Shield Gate, Focus School recommandé</p>
+</div>
+
+<!-- Overlay & Popups -->
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="nukor"><button class="close-btn" onclick="closePopup('nukor')">X</button>
+<h3>Kuva Nukor</h3><p><b>Warframe / Helminth :</b> Saryn Prime / Pillage</p><p><b>Arcanes :</b> Grâce / Énergie</p><p><b>Mods :</b> Diffusion galvanisée, Tir galvanisé, Torrent létal, Charge thermique primée, Peste du pistolet, Gelure, Brasier, Pacte d’Augure</p><p><b>Rôle :</b> Primer, Status Viral + Slash</p></div>
+
+<div class="popup" id="zarr"><button class="close-btn" onclick="closePopup('zarr')">X</button>
+<h3>Kuva Zarr</h3><p><b>Warframe / Helminth :</b> Revenant Prime / Terreur</p><p><b>Arcanes :</b> Gardien / Accélération</p><p><b>Mods :</b> Chambre galvanisée, Aptitude galvanisée, Délai critique...</p><p><b>Rôle :</b> Room Clear / Heavy Target</p></div>
+
+<!-- Ajouter les popups Brakk, Drakgoon, Seer, Kraken ici -->
+
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for(i=0;i<tabcontent.length;i++){tabcontent[i].style.display="none";}
+  tablinks = document.getElementsByClassName("tablinks");
+  for(i=0;i<tablinks.length;i++){tablinks[i].className=tablinks[i].className.replace(" active","");}
+  document.getElementById(tabName).style.display="block";
+  evt.currentTarget.className += " active";
+}
+function openPopup(id){document.getElementById(id).style.display='block';document.getElementById('overlay').style.display='block';}
+function closePopup(id){document.getElementById(id).style.display='none';document.getElementById('overlay').style.display='none';}
+</script>
+
+</body>
+</html>
